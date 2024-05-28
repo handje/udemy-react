@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 
-const Player = ({ initialName, symbol, isActive }) => {
+const Player = ({ initialName, symbol, isActive, onChangePlayer }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [name, setName] = useState(initialName);
 
   const handleEditClick = () => {
     setIsEditing((editing) => !editing); //set함수는 비동기적으로 처리하기 때문에 이전의 가장 최신 state를 이용하기 위해서 함수로 전달(자동으로 이전 상태를 인자로 넣어줌)
+    onChangePlayer(symbol, name);
   };
   const handleInputChange = (e) => {
     setName(e.target.value);
