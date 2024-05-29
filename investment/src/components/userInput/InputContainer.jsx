@@ -1,16 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import Input from "./Input";
-
-const InputContainer = () => {
+const INPUT_NAME = [
+  "initialInvestment",
+  "annualInvestment",
+  "expectedReturn",
+  "duration",
+];
+const InputContainer = ({ inputValue, setInputValue }) => {
   return (
     <div id="user-input">
       <div className="input-group">
-        <Input name="INITIAL INVESTMENT" />
-        <Input name="ANNUAL INVESTMENT" />
+        <Input
+          name="INITIAL INVESTMENT"
+          keyName="initialInvestment"
+          value={inputValue}
+          setValue={setInputValue}
+        />
+        <Input
+          name="ANNUAL INVESTMENT"
+          keyName="annualInvestment"
+          value={inputValue}
+          setValue={setInputValue}
+        />
       </div>
       <div className="input-group">
-        <Input name="EXPECTED RETURN" />
-        <Input name="DURATION" />
+        <Input
+          name="EXPECTED RETURN"
+          keyName="expectedReturn"
+          value={inputValue}
+          setValue={setInputValue}
+        />
+        <Input
+          name="DURATION"
+          keyName="duration"
+          value={inputValue}
+          setValue={setInputValue}
+        />
       </div>
     </div>
   );
