@@ -1,3 +1,6 @@
+$button-main-color: #f0b322;
+$button-active-color: #f0920e;
+
 #auth-inputs {
   width: 100%;
   max-width: 28rem;
@@ -14,27 +17,27 @@
   flex-direction: column;
   gap: 0.5rem;
   margin-bottom: 1.5rem;
-}
 
-.controls label {
-  display: block;
-  margin-bottom: 0.5rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #6b7280;
-}
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #6b7280;
+  }
 
-.controls input {
-  width: 100%;
-  padding: 0.75rem 1rem;
-  line-height: 1.5;
-  background-color: #d1d5db;
-  color: #374151;
-  border: 1px solid transparent;
-  border-radius: 0.25rem;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    line-height: 1.5;
+    background-color: #d1d5db;
+    color: #374151;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  }
 }
 
 label.invalid {
@@ -59,20 +62,19 @@ input.invalid {
   text-transform: uppercase;
   border-radius: 0.25rem;
   color: #1f2937;
-  background-color: #f0b322;
+  background-color: $button-main-color;
   border-radius: 6px;
   border: none;
-}
 
-.button:hover {
-  background-color: #f0920e;
+  &:hover {
+    background-color: $button-active-color;
+  }
 }
 
 .text-button {
-  color: #f0b322;
+  color: $button-main-color;
   border: none;
-}
-
-.text-button:hover {
-  color: #f0920e;
+  &:hover {
+    color: $button-active-color;
+  }
 }

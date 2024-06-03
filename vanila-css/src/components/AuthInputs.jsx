@@ -1,5 +1,5 @@
 import { useState } from "react";
-import style from "../styles/Form.module.css";
+import style from "../styles/Form.module.scss";
 export default function AuthInputs() {
   const [enteredEmail, setEnteredEmail] = useState("");
   const [enteredPassword, setEnteredPassword] = useState("");
