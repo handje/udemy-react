@@ -1,22 +1,9 @@
 import React from "react";
 import { calculateInvestmentResults, formatter } from "../../util/investment";
-const dummy = [
-  {
-    year: 1, // year identifier
-    interest: 1000, // the amount of interest earned in this year
-    valueEndOfYear: 100, // investment value at end of year
-    annualInvestment: 1000,
-  },
-  {
-    year: 2, // year identifier
-    interest: 1000, // the amount of interest earned in this year
-    valueEndOfYear: 100, // investment value at end of year
-    annualInvestment: 1000,
-  },
-];
 
 const ResultContainer = ({ inputValue }) => {
   const investResult = calculateInvestmentResults(inputValue);
+
   const initialInvestment =
     investResult[0].valueEndOfYear -
     investResult[0].interest -

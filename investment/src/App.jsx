@@ -15,7 +15,11 @@ function App() {
     <>
       <Header />
       <InputContainer inputValue={inputValue} setInputValue={setInputValue} />
-      <ResultContainer inputValue={inputValue} />
+      {inputValue.duration > 0 ? (
+        <ResultContainer inputValue={inputValue} />
+      ) : (
+        <p className="center">Check duration</p>
+      )}
     </>
   );
 }

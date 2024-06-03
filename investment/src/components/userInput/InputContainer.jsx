@@ -1,11 +1,6 @@
 import React, { useState } from "react";
 import Input from "./Input";
-const INPUT_NAME = [
-  "initialInvestment",
-  "annualInvestment",
-  "expectedReturn",
-  "duration",
-];
+
 const InputContainer = ({ inputValue, setInputValue }) => {
   return (
     <div id="user-input">
