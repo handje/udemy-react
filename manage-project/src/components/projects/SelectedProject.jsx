@@ -1,6 +1,14 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 
-const SelectedProject = ({ selectedProject, onDeleteProject }) => {
+import TaskList from "../tasks/TaskList";
+
+const SelectedProject = ({
+  selectedProject,
+  selectedTasks,
+  onDeleteProject,
+  onAddTask,
+  onDeleteTask,
+}) => {
   const formattedDate = new Date(selectedProject?.dueDate).toLocaleDateString(
     "en-US",
     {
@@ -31,22 +39,11 @@ const SelectedProject = ({ selectedProject, onDeleteProject }) => {
           </p>
         </div>
       </header>
-
-      <div>
-        <h2 className="text-2xl font-bold text-stone-700 mb-4">Tasks</h2>
-        <div>
-          <input />
-          <button>Add Task</button>
-        </div>
-
-        <div>
-          <p className="text-stone-800 my-4">task name</p>
-          <button>Clear</button>
-        </div>
-        <ul className="p-4 mt-8 rounded-md bg-stone-100">
-          <li>ss</li>
-        </ul>
-      </div>
+      <TaskList
+        tasks={selectedTasks}
+        onAddTask={onAddTask}
+        onDeleteTask={onDeleteTask}
+      />
     </div>
   );
 };

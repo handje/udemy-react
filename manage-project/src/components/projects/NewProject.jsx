@@ -2,7 +2,7 @@ import { useRef } from "react";
 import Input from "../common/Input";
 import Modal from "../common/Modal";
 
-const AddProject = ({ setProjectState }) => {
+const NewProject = ({ setProjectState }) => {
   const title = useRef();
   const description = useRef();
   const dueDate = useRef();
@@ -83,4 +83,4 @@ const AddProject = ({ setProjectState }) => {
   );
 };
 
-export default AddProject;
+export default NewProject;

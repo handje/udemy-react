@@ -3,17 +3,22 @@ import { useState } from "react";
 import ProjectContextProvider from "./store/project-context";
 import Nav from "./components/layout/Nav";
 import NoProjectSelected from "./components/fallback/NoProjectSelected";
-import AddProject from "./components/projects/AddProject";
+import NewProject from "./components/projects/NewProject";
 import SelectedProject from "./components/projects/SelectedProject";
 
 function App() {
   const [projectState, setProjectState] = useState({
     selectedProjectId: undefined,
     projects: [],
+    tasks: [],
   });
 
   const selectedProject = projectState.projects.find(
     (project) => project.id === projectState.selectedProjectId
+  );
+
+  const selectedTasks = projectState.tasks.filter(
+    (task) => task.projectId === projectState.selectedProjectId
   );
 
   const handleSelectAdd = () => {
@@ -46,16 +51,42 @@ function App() {
     });
   };
 
+  const handleAddTask = (todo) => {
+    setProjectState((prev) => {
+      const newTask = {
+        id: Math.random(),
+        todo: todo,
+        projectId: prev.selectedProjectId,
+      };
+      return {
+        ...prev,
+        tasks: [...prev.tasks, newTask],
+      };
+    });
+  };
+
+  const hanldeDeleteTask = (id) => {
+    setProjectState((prev) => {
+      return {
+        ...prev,
+        tasks: prev.tasks.filter((task) => task.id !== id),
+      };
+    });
+  };
+
   let content;
   if (projectState.selectedProjectId === undefined) {
     content = <NoProjectSelected onSelectAdd={handleSelectAdd} />;
   } else if (projectState.selectedProjectId === null) {
-    content = <AddProject setProjectState={setProjectState} />;
+    content = <NewProject setProjectState={setProjectState} />;
   } else {
     content = (
       <SelectedProject
         selectedProject={selectedProject}
+        selectedTasks={selectedTasks}
         onDeleteProject={handleDeleteProject}
+        onAddTask={handleAddTask}
+        onDeleteTask={hanldeDeleteTask}
       />
     );
   }
