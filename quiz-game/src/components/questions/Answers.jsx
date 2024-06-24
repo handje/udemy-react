@@ -35,6 +35,7 @@ const Answers = ({
                 handleSelectAnswer(answer);
               }}
               className={buttonCss}
+              disabled={answerState !== ""}
             >
               {answer}
             </button>
