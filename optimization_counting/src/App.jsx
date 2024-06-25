@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
 import Counter from "./components/Counter/Counter.jsx";
 import Header from "./components/Header.jsx";
@@ -6,6 +6,7 @@ import { log } from "./log.js";
 import ConfigureCounter from "./components/Counter/ConfigureCounter.jsx";
 import KeyCounter from "./components/Counter/KeyCounter.jsx";
 
+//million-ignore
 function App() {
   log("<App /> rendered");
   const [chosenCount, setChosenCount] = useState(0);

@@ -1,4 +1,4 @@
-import { memo, useCallback, useState, useMemo } from "react";
+import React, { memo, useCallback, useState, useMemo } from "react";
 
 import IconButton from "../UI/IconButton.jsx";
 import MinusIcon from "../UI/Icons/MinusIcon.jsx";
