@@ -1,0 +1,34 @@
+import { useRef } from "react";
+
+export default function Login() {
+  const email = useRef();
+  const pwd = useRef();
+
+  const handleSumit = (event) => {
+    event.preventDefault();
+    const enteredEmail = email.current.value;
+    const enteredPwd = pwd.current.value;
+    console.log(enteredEmail, enteredPwd);
+  };
+  return (
+    <form onSubmit={handleSumit}>
+      <h2>Login</h2>
+      <div className="control-row">
+        <div className="control no-margin">
+          <label htmlFor="email">Email</label>
+          <input id="email" type="email" name="email" ref={email} />
+        </div>
+
+        <div className="control no-margin">
+          <label htmlFor="password">Password</label>
+          <input id="password" type="password" name="password" ref={pwd} />
+        </div>
+      </div>
+
+      <p className="form-actions">
+        <button className="button button-flat">Reset</button>
+        <button className="button">Login</button>
+      </p>
+    </form>
+  );
+}
