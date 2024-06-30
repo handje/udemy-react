@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 
-import { Modal, Input } from "../commons";
-import ButtonContainer from "./ButtonContainer";
+import { Button, Input } from "../commons";
+import { ModalContext } from "../../store";
 
 const Checkout = () => {
+  const { handleCartClose } = useContext(ModalContext);
   return (
-    <Modal title="Checkout">
+    <>
       <p>Total Amount</p>
       <form>
         <Input label="Full Name" name="name" />
@@ -15,9 +16,14 @@ const Checkout = () => {
           <Input label="Postal Code" />
           <Input label="City" />
         </div>
-        <ButtonContainer label="Submit Order" />
+        <div className="modal-actions">
+          <button className="text-button" onClick={handleCartClose}>
+            Close
+          </button>
+          <Button>Submit Order</Button>
+        </div>
       </form>
-    </Modal>
+    </>
   );
 };
 

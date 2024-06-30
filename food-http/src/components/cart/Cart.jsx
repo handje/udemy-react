@@ -1,24 +1,50 @@
-import React from "react";
+import React, { useContext } from "react";
 
-import { Modal } from "../commons";
-import ButtonContainer from "./ButtonContainer";
+import { Button } from "../commons";
+import { CartContext, ModalContext } from "../../store";
 
 const Cart = () => {
+  const { cart, total, addFoodCount, removeFoodCount } =
+    useContext(CartContext);
+  const { handleCartClose, handleCheckoutOpen } = useContext(ModalContext);
   return (
-    <Modal title="Your Cart">
-      <ul className="cart-item">
-        <li>
-          <p>food - 1 x $19.99</p>
-        </li>
-        <div className="cart-item-actions">
-          <button>-</button>
-          <p>1</p>
-          <button>+</button>
-        </div>
+    <>
+      <ul>
+        {cart.map((food) => {
+          return (
+            <div className="cart-item" key={food.id}>
+              <li>
+                <p>{`${food.name} - ${food.count} x $${food.price}`}</p>
+              </li>
+              <div className="cart-item-actions">
+                <button
+                  onClick={() => {
+                    removeFoodCount(food.id);
+                  }}
+                >
+                  -
+                </button>
+                <p>{food.count}</p>
+                <button
+                  onClick={() => {
+                    addFoodCount(food.id);
+                  }}
+                >
+                  +
+                </button>
+              </div>
+            </div>
+          );
+        })}
       </ul>
-      <p className="cart-total">total</p>
-      <ButtonContainer label="Go to Checkout" />
-    </Modal>
+      <p className="cart-total">${total <= 0 ? "0.00" : total.toFixed(2)}</p>
+      <div className="modal-actions">
+        <button className="text-button" onClick={handleCartClose}>
+          Close
+        </button>
+        <Button onClick={handleCheckoutOpen}>Go to Checkout</Button>
+      </div>
+    </>
   );
 };
 
