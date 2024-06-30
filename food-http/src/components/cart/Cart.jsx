@@ -9,6 +9,7 @@ const Cart = () => {
   const { handleCartClose, handleCheckoutOpen } = useContext(ModalContext);
   return (
     <>
+      <h2>Your Cart</h2>
       <ul>
         {cart.map((food) => {
           return (

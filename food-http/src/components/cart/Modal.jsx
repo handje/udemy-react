@@ -19,7 +19,6 @@ const Modal = () => {
 
   return createPortal(
     <dialog ref={dialog} className="modal cart" onClose={handleCartClose}>
-      <h2>{isCheckoutOpen ? "Checkout" : "Your Cart"}</h2>
       {isCheckoutOpen ? <Checkout /> : <Cart />}
     </dialog>,
     document.getElementById("modal")

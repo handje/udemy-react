@@ -16,6 +16,7 @@ export const ModalContextProvider = ({ children }) => {
   };
   const handleCartClose = () => {
     setIsCartOpen(false);
+    setIsCheckoutOpen(false);
   };
   const handleCheckoutOpen = () => {
     setIsCheckoutOpen(true);
