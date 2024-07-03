@@ -1,4 +1,12 @@
-import { CartContext, CartContextProvider } from "./cart-context";
-import { ModalContext, ModalContextProvider } from "./modal-context";
+import { CartContext, CartContextProvider } from "./CartContext";
+import {
+  UserProgressContext,
+  UserProgressContextProvider,
+} from "./UserProgressContext";
 
-export { CartContext, CartContextProvider, ModalContext, ModalContextProvider };
+export {
+  CartContext,
+  CartContextProvider,
+  UserProgressContext,
+  UserProgressContextProvider,
+};

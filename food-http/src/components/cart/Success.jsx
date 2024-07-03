@@ -1,11 +1,9 @@
 import React, { useContext } from "react";
 
-import { Button } from "../commons";
-import { ModalContext } from "../../store";
-const Success = () => {
-  const { handleCartClose } = useContext(ModalContext);
+import { Button, Modal } from "../commons";
+const Success = ({ open, onClose }) => {
   return (
-    <>
+    <Modal open={open} onClose={onClose}>
       <h2>Success!</h2>
       <p>Your order was submitted successfully.</p>
       <p>
@@ -13,9 +11,9 @@ const Success = () => {
         minutes
       </p>
       <div className="modal-actions">
-        <Button onClick={handleCartClose}>Okay</Button>
+        <Button onClick={onClose}>Okay</Button>
       </div>
-    </>
+    </Modal>
   );
 };
 

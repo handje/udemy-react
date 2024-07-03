@@ -1,26 +1,25 @@
 import React, { useContext } from "react";
 
 import logo from "../assets/logo.jpg";
-import { CartContext, ModalContext } from "../store";
-import { Modal } from "../components/cart";
+import { CartContext, UserProgressContext } from "../store";
+import { Button, Modal } from "./commons";
 
 const Header = () => {
-  const { cart } = useContext(CartContext);
-  const cartCount = cart.length;
-  const { handleCartOpen } = useContext(ModalContext);
-  console.log("header");
+  const { items } = useContext(CartContext);
+  const { showCart } = useContext(UserProgressContext);
+
+  const cartCount = items.reduce((acc, curr) => acc + curr.quantity, 0);
+
   return (
     <>
-      <Modal />
       <header id="main-header">
         <div id="title">
           <img src={logo} alt="FOOD-LOGO" />
           <h1>REACTFOOD</h1>
         </div>
-        <button
-          className="text-button"
-          onClick={handleCartOpen}
-        >{`Cart(${cartCount})`}</button>
+        <nav>
+          <Button textOnly onClick={showCart}>{`Cart(${cartCount})`}</Button>
+        </nav>
       </header>
     </>
   );

@@ -2,30 +2,32 @@ import React, { useContext } from "react";
 
 import { Button } from "../commons";
 import { CartContext } from "../../store";
+import { currencyFormatter } from "../../utils/formatting";
 
 const Item = ({ menu }) => {
   const { id, name, price, description, image } = menu;
   const { addFoodCount } = useContext(CartContext);
 
   return (
-    <div className="meal-item">
+    <li className="meal-item">
       <article>
-        <img src={`http://localhost:3000/${image}`} alt="food image" />
-        <h3>{name}</h3>
+        <img src={`http://localhost:3000/${image}`} alt={name} />
         <div>
-          <p className="meal-item-price">{price}</p>
+          <h3>{name}</h3>
+          <p className="meal-item-price">{currencyFormatter.format(price)}</p>
           <p className="meal-item-description">{description}</p>
+        </div>
+        <p className="meal-item-actions">
           <Button
-            className="meal-item-actions"
             onClick={() => {
-              addFoodCount(id, name, price);
+              addFoodCount(menu);
             }}
           >
             Add to Cart
           </Button>
-        </div>
+        </p>
       </article>
-    </div>
+    </li>
   );
 };
 

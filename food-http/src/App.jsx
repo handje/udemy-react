@@ -1,15 +1,18 @@
 import Header from "./components/Header";
+import { Cart, Checkout } from "./components/cart";
 import FoodList from "./components/food/FoodList";
-import { CartContextProvider, ModalContextProvider } from "./store";
+import { CartContextProvider, UserProgressContextProvider } from "./store";
 
 function App() {
   return (
-    <ModalContextProvider>
+    <UserProgressContextProvider>
       <CartContextProvider>
         <Header />
         <FoodList />
+        <Cart />
+        <Checkout />
       </CartContextProvider>
-    </ModalContextProvider>
+    </UserProgressContextProvider>
   );
 }
 
