@@ -1,25 +1,24 @@
-import React, { useState } from "react";
 import EventsList from "../components/EventsList";
-const dummy = {
-  events: [
-    {
-      id: "e1",
-      title: "A dummy event",
-      date: "2023-02-22",
-      image:
-        "https://blog.hubspot.de/hubfs/Germany/Blog_images/Optimize_Marketing%20Events%20DACH%202021.jpg",
-      description:
-        "Join this amazing event and connect with fellow developers.",
-    },
-  ],
-};
-const EventsPage = () => {
-  const [eventsList, setEventsList] = useState(dummy.events);
-  return (
-    <>
-      <EventsList events={eventsList} />
-    </>
-  );
-};
+import { json, useLoaderData } from "react-router-dom";
+
+function EventsPage() {
+  const data = useLoaderData();
+  const events = data?.events;
+
+  return <EventsList events={events} />;
+}
 
 export default EventsPage;
+
+//loader코드는 브라우저에서 실행(서버x)
+export const eventsLoader = async () => {
+  const response = await fetch("http://localhost:8080/events");
+  if (!response.ok) {
+    // throw new Response(JSON.stringify({ message: "Fetching events failed." }), {
+    //   status: 500,
+    // });
+    throw json({ message: "Fetching events failed." }, { status: 500 });
+  } else {
+    return response;
+  }
+};

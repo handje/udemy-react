@@ -1,28 +1,23 @@
-import { useParams } from "react-router-dom";
+import { json, useRouteLoaderData } from "react-router-dom";
 import EventItem from "../components/EventItem";
 
-const dummy = {
-  events: [
-    {
-      id: "e1",
-      title: "A dummy event",
-      date: "2023-02-22",
-      image:
-        "https://blog.hubspot.de/hubfs/Germany/Blog_images/Optimize_Marketing%20Events%20DACH%202021.jpg",
-      description:
-        "Join this amazing event and connect with fellow developers.",
-    },
-  ],
-};
-
 const EventDetailPage = () => {
-  const { id } = useParams();
-  const [event] = dummy.events.filter((ev) => ev.id === id);
+  const data = useRouteLoaderData("event-detail");
   return (
     <>
-      <EventItem event={event} />
+      <EventItem event={data?.event} />
     </>
   );
 };
 
 export default EventDetailPage;
+
+export const eventDetailLoader = async ({ request, params }) => {
+  const id = params.id;
+  const response = await fetch(`http://localhost:8080/events/${id}`);
+  if (!response.ok) {
+    throw json({ message: "Fetching event failed." }, { status: 500 });
+  } else {
+    return response;
+  }
+};

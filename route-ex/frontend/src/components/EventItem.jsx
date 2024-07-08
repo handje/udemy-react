@@ -5,6 +5,9 @@ function EventItem({ event }) {
   function startDeleteHandler() {
     // ...
   }
+  if (event === undefined) {
+    return <>no</>;
+  }
   return (
     <article className={classes.event}>
       <img src={event.image} alt={event.title} />
