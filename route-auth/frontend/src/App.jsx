@@ -13,11 +13,15 @@ import Error from "./pages/Error";
 import { formAction } from "./components/EventForm";
 import NewsletterPage, { action as newsletterAction } from "./pages/Newsletter";
 import Authentication, { action as authAction } from "./pages/Authentication";
+import { action as logoutAction } from "./pages/Logout";
+import { tokenLoader, checkAuthLoader } from "./utils/authToken";
 
 const router = createBrowserRouter([
   {
+    id: "root",
     path: "/",
     element: <Root />,
+    loader: tokenLoader,
     errorElement: <Error />,
     children: [
       { index: true, element: <HomePage /> },
@@ -34,6 +38,7 @@ const router = createBrowserRouter([
             path: "new",
             element: <NewEventPage />,
             action: formAction,
+            loader: checkAuthLoader,
           },
           {
             id: "event-detail",
@@ -49,6 +54,7 @@ const router = createBrowserRouter([
                 path: "edit",
                 element: <EditEventPage />,
                 action: formAction,
+                loader: checkAuthLoader,
               },
             ],
           },
@@ -63,6 +69,10 @@ const router = createBrowserRouter([
         path: "auth",
         element: <Authentication />,
         action: authAction,
+      },
+      {
+        path: "logout",
+        action: logoutAction,
       },
     ],
   },

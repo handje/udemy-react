@@ -15,9 +15,14 @@ const Error = () => {
     title = "Internal Server Error";
     message = error.data.message;
   }
+  if (error.status === 401 || error.status === 422) {
+    title = "Dont accessable";
+    message = error.data.message;
+  }
+  console.log(error);
   return (
     <PageContent title={title}>
-      <p>{message}</p>
+      <p>{error?.data?.message || message}</p>
     </PageContent>
   );
 };

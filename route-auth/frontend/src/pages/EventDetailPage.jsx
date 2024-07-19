@@ -5,9 +5,10 @@ import {
   redirect,
   useRouteLoaderData,
 } from "react-router-dom";
+import { Suspense } from "react";
 import EventItem from "../components/EventItem";
 import EventsList from "../components/EventsList";
-import { Suspense } from "react";
+import { getAuthToken } from "../utils/authToken";
 
 const EventDetailPage = () => {
   const { event, events } = useRouteLoaderData("event-detail");
@@ -58,8 +59,12 @@ export const eventDetailLoader = async ({ request, params }) => {
 
 export const eventDetailAction = async ({ request, params }) => {
   const id = params.id;
+  const token = getAuthToken();
   const response = await fetch(`http://localhost:8080/events/${id}`, {
     method: request.method,
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   });
   if (!response.ok) {
     throw json({ message: "Deleting event failed." }, { status: 500 });
